@@ -1,0 +1,92 @@
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+
+}
+
+.signup_container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+    max-width: 400px;
+    height: 600px;
+    margin: auto;
+    padding-bottom: 50px;
+    background-color: rgba(0, 0, 0, 0.700);
+    border: 4px double #808080;
+}
+
+.signup_container form {
+    width: 100%;
+}
+
+.signup_container img {
+    padding: 40px 0px 30px 0px;
+    width: 70%;
+}
+
+.signup_container button {
+    margin: auto;
+    width: 70%;
+    background-image: url('https://img.freepik.com/premium-photo/watercolor-dark-gray-background-texture-monochrome-water-color-painting_145343-126.jpg?w=360');
+    color: white;
+    padding: 10px;
+    border: 4px double #808080;
+    cursor: pointer;
+    font-size: 16px;
+    font-family: 'Cormorant Garamond', serif;
+}
+
+.input_container {
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 70%;
+    margin: auto;
+    align-content: center;
+}
+
+.input_container input {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    padding: 10px 12px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid #808080;
+    background-color: rgb(255, 255, 255, 0.1);
+    font-size: 14px;
+    color: rgb(189, 182, 182);
+}
+
+.input_container label {
+    font-family: 'Cormorant Garamond', serif;
+    color: white;
+    margin-bottom: 5px;
+}
+
+#input_value_incorrect {
+    /* border: none; */
+    border: 1px solid red;
+}
+
+#input_value_correct {
+    /* border: none; */
+    border-bottom: 1px solid #808080;
+}
+
+.input_validation_incorrect {
+    position: absolute;
+    width: auto;
+    bottom: 5px;
+    font-size: 8px;
+    left: 0px;
+    color: red;
+}
+
+.input_container input::placeholder {
+    color: whitesmoke;
+    font-family: 'Cormorant Garamond', serif;
+    opacity: 0.4;
+}
