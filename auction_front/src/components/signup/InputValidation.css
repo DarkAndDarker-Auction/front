@@ -1,9 +1,9 @@
-#input_value_incorrect {
+.input_value_incorrect {
     /* border: none; */
     border: 1px solid red;
 }
 
-#input_value_correct {
+.input_value_correct {
     /* border: none; */
     border-bottom: 1px solid #808080;
 }

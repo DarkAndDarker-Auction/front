@@ -4,7 +4,7 @@
 
 }
 
-.signin-container {
+.signin_container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,16 +17,16 @@
     border: 4px double #808080;
 }
 
-.signin-container form {
+.signin_container form {
     width: 100%;
 }
 
-.signin-container img {
+.signin_container img {
     padding: 80px 0px 40px 0px;
     width: 70%;
 }
 
-.signin-container button {
+.signin_container button {
     margin: auto;
     width: 70%;
     background-image: url('https://img.freepik.com/premium-photo/watercolor-dark-gray-background-texture-monochrome-water-color-painting_145343-126.jpg?w=360');
@@ -38,7 +38,7 @@
     font-family: 'Cormorant Garamond', serif;
 }
 
-.input-container {
+.input_container {
     display: flex;
     flex-wrap: wrap;
     margin-top: 1.5rem;
@@ -46,7 +46,7 @@
     align-content: center;
 }
 
-.input-container input {
+.input_container input {
     margin: auto;
     width: 70%;
     padding: 12px 20px;
@@ -59,21 +59,21 @@
     font-size: 18px;
 }
 
-.input-container input::placeholder {
+.input_container input::placeholder {
     color: whitesmoke;
     font-family: 'Cormorant Garamond', serif;
     opacity: 0.5;
 }
 
-#signup-button {
+#signup_button {
     margin-top: 60px;
 }
 
-#signup-button a {
+#signup_button a {
     color: blue;
 }
 
-.signup-notice {
+.signup_notice {
     margin-top: 20px;
     color: white;
     text-align: center;

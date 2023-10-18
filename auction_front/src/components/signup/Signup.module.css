@@ -26,7 +26,7 @@
     width: 70%;
 }
 
-.signup_container button {
+.submit_button {
     margin: auto;
     width: 70%;
     background-image: url('https://img.freepik.com/premium-photo/watercolor-dark-gray-background-texture-monochrome-water-color-painting_145343-126.jpg?w=360');
@@ -43,8 +43,7 @@
     position: relative;
     flex-direction: column;
     flex-wrap: wrap;
-    width: 70%;
-    margin: auto;
+    width: 80%;
     align-content: center;
 }
 
@@ -63,7 +62,6 @@
 .input_container label {
     font-family: 'Cormorant Garamond', serif;
     color: white;
-    margin-bottom: 5px;
 }
 
 #input_value_incorrect {
@@ -89,4 +87,26 @@
     color: whitesmoke;
     font-family: 'Cormorant Garamond', serif;
     opacity: 0.4;
+}
+
+.input_container label {
+    font-size: 12px;
+}
+
+.input_container input {
+    height: 35px;
+}
+
+.button {
+    background: black;
+    margin-left: 10px;
+    width: 30%;
+    height: 35px;
+    font-size: 12px;
+}
+
+.input_wrapper {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
 }

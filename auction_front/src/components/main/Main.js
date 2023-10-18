@@ -35,7 +35,7 @@ const Main = () => {
     }, []);
 
     return (
-        <div className="auction-container">
+        <div className="auction_container">
             <SearchBar />
             <div className="item-list"></div>
         </div>
