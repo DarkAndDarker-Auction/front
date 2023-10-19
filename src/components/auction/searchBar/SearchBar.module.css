@@ -1,0 +1,55 @@
+.searchbar_container {
+    background-color: brown;
+    width: 30%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.searchkey_label {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.searchkey_wrapper {
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    width: 100%;
+}
+
+.searchkey_wrapper span {
+    width: 100px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+
+.dropdown {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    width: 60%;
+}
+
+.dropdown_menu {
+    width: 100%;
+}
+
+.dropdown_item {
+    width: 100%;
+}
+
+.dropdown_list {
+    width: 100%;
+}
+
+.item_name {
+    width: 60%;
+    height: 35px;
+    padding-left: 10px;
+}
