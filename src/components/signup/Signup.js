@@ -15,11 +15,6 @@ const signup = async (email, password, nickname) => {
             withCredentials: false,
         });
 
-        // // accessToken, refreshToken 로컬스토리지 저장.
-        // const { accessToken, refreshToken } = res.data;
-        // localStorage.setItem('accessToken', accessToken);
-        // localStorage.setItem('refreshToken', refreshToken);
-
         return true;
 
     } catch (error) {
@@ -82,25 +77,25 @@ const verifyNicknameVerification = async (nickname) => {
 }
 
 const Signup = () => {
+    const movePage = useNavigate();
 
     const [email, setEmail] = useState('');
     const [verificationCode, setVerificationCode] = useState('');
     const [password, setPassword] = useState('');
     const [repeatPassword, setRepeatPassword] = useState('');
     const [nickname, setNickname] = useState('');
+    const [nicknameValidationMessage, setNicknameValidationMessage] = useState('닉네임 중복 확인을 해주세요.');
 
-    const [isPasswordMatched, setIsPasswordMatched] = useState(true);
+    const [isPasswordMatched, setIsPasswordMatched] = useState(false);
     const [isValidateEmail, setIsValidateEmail] = useState(true);
-    const [isVerificationCodeValidate, setIsVerificationCodeValidate] = useState(true);
-    const [isNicknameValidate, setIsNicknameValidate] = useState(true);
+    const [isVerificationCodeValidate, setIsVerificationCodeValidate] = useState(false);
+    const [isNicknameValidate, setIsNicknameValidate] = useState(false);
+    const [isEmailSend, setIsEmailSend] = useState(false);
     const [isDisabled, setIsDisabled] = useState(true);
 
-    const movePage = useNavigate();
-
     useEffect(() => {
-        setIsDisabled(!(email && isValidateEmail && isVerificationCodeValidate && isNicknameValidate
-            && password && repeatPassword && isPasswordMatched && nickname));
-    }, [email, verificationCode, password, repeatPassword, nickname])
+        setIsDisabled(!(isValidateEmail && isVerificationCodeValidate && isNicknameValidate && isPasswordMatched));
+    }, [isValidateEmail, isVerificationCodeValidate, isNicknameValidate, isPasswordMatched])
 
     const onChangeEmail = (event) => {
         const curEmail = removeWhitespace(event.target.value);
@@ -117,6 +112,8 @@ const Signup = () => {
 
     const onChangeNickname = (event) => {
         setNickname(event.target.value);
+        setIsNicknameValidate(false);
+        setNicknameValidationMessage("닉네임 중복 확인을 해주세요.")
     };
 
     const onChangeVerificationCode = (event) => {
@@ -138,28 +135,36 @@ const Signup = () => {
     }
 
     const handleSendEmailVerificationCode = async (event) => {
+        if (!isValidateEmail) return;
         const isValidate = await sendEmailVerificationCode(email);
-        setIsVerificationCodeValidate(isValidate);
-        console.log(isValidate);
+        setIsEmailSend(true);
     }
 
     const handleVerifyEmailVerificationCode = async (event) => {
         const isValidate = await verifyEmailVerificationCode(email, verificationCode);
         setIsVerificationCodeValidate(isValidate);
-        console.log(isVerificationCodeValidate);
+        if (isValidate) {
+            const inputEmail = document.querySelector('.email');
+            const inputVerificationCode = document.querySelector('.verification_code');
+            inputVerificationCode.readOnly = true;
+            inputEmail.readOnly = true;
+        }
     }
 
     const handleNicknameVerification = async (event) => {
         const isValidate = await verifyNicknameVerification(nickname);
         setIsNicknameValidate(isValidate);
-        console.log(isValidate);
+        if (isValidate) {
+            return;
+        }
+        setNicknameValidationMessage("이미 사용중인 닉네임 입니다.")
     }
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         const isSuccess = await signup(email, password, nickname);
         if (isSuccess) {
-            movePage('/main');
+            movePage('/user/sign-in');
             return;
         }
         console.log("입력되지 않은 정보가 있습니다.");
@@ -172,17 +177,19 @@ const Signup = () => {
                 <label htmlFor="email">Email</label>
                 <div className={styles.input_wrapper}>
                     <input type="text" onChange={onChangeEmail} onBlur={onBlurEmail}
-                        name="email" className={`input_value_${isValidateEmail ? "correct" : "incorrect"}`} />
+                        name="email" className={`input_value_${isValidateEmail ? "correct" : "incorrect"} email`} />
                     {!isValidateEmail && <div className={styles.input_validation_incorrect}>올바른 이메일 형식이 아닙니다.</div>}
+                    {isEmailSend && <div className={styles.input_validation_correct}>이메일 인증코드를 확인해주세요.</div>}
                     <button className={`${styles.button} ${styles.send_email}`} onClick={handleSendEmailVerificationCode}>SEND</button>
                 </div>
             </div>
 
             <div className={styles.input_container}>
-                <label htmlFor="password">Verification Code</label>
+                <label htmlFor="verificationCode">Verification Code</label>
                 <div className={styles.input_wrapper}>
-                    <input type="text" onChange={onChangeVerificationCode} name="verificationCode" />
+                    <input type="text" onChange={onChangeVerificationCode} name="verificationCode" className="verification_code" />
                     {!isVerificationCodeValidate && <div className={`${styles.input_container} ${styles.input_validation_incorrect}`}>인증번호를 확인해주세요.</div>}
+                    {isVerificationCodeValidate && <div className={`${styles.input_container} ${styles.input_validation_correct}`}>인증에 성공하였습니다.</div>}
                     <button className={`${styles.button} ${styles.verify_code}`} onClick={handleVerifyEmailVerificationCode}>VERIFY</button>
                 </div>
             </div>
@@ -196,13 +203,15 @@ const Signup = () => {
                 <label htmlFor="repeatPassword">Repeat Password</label>
                 <input type="password" onChange={onChangeRepeatPassword} onBlur={onBlurRepeatPassword} name="repeatPassword" />
                 {!isPasswordMatched && <div className={`${styles.input_container} ${styles.input_validation_incorrect}`}>일치하지 않는 비밀번호 입니다.</div>}
+                {isPasswordMatched && <div className={`${styles.input_container} ${styles.input_validation_correct}`}>일치하는 비밀번호 입니다.</div>}
             </div>
 
             <div className={styles.input_container}>
                 <label htmlFor="nickname">Nickname</label>
                 <div className={styles.input_wrapper}>
-                    <input type="text" onChange={onChangeNickname} name="nickname" />
-                    {!isNicknameValidate && <div className={`${styles.input_container} ${styles.input_validation_incorrect}`}>사용할 수 없는 닉네임 입니다.</div>}
+                    <input type="text" onChange={onChangeNickname} name="nickname" className="nickname" />
+                    {!isNicknameValidate && <div className={`${styles.input_container} ${styles.input_validation_incorrect}`}>{nicknameValidationMessage}</div>}
+                    {isNicknameValidate && <div className={`${styles.input_container} ${styles.input_validation_correct}`}>사용 가능한 닉네임 입니다.</div>}
                     <button className={`${styles.button} ${styles.verfiy_nickname}`} onClick={handleNicknameVerification}>VERIFY</button>
                 </div>
             </div>

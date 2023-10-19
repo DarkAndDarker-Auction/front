@@ -83,6 +83,15 @@
     color: red;
 }
 
+.input_validation_correct {
+    position: absolute;
+    width: auto;
+    bottom: 5px;
+    font-size: 8px;
+    left: 0px;
+    color: green;
+}
+
 .input_container input::placeholder {
     color: whitesmoke;
     font-family: 'Cormorant Garamond', serif;
