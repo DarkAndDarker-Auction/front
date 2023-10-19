@@ -1,6 +1,6 @@
 import React from 'react'
 import Signin from './components/signin/Signin'
-import Main from './components/main/Main'
+import Auction from './components/auction/Auction'
 import Signup from './components/signup/Signup'
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -12,7 +12,7 @@ export default function App() {
 
             <BrowserRouter>
                 <Routes>
-                    <Route path={"/main"} element={<Main />}></Route>
+                    <Route path={"/auction"} element={<Auction />}></Route>
                     <Route path={"/user/sign-in"} element={<Signin />}></Route>
                     <Route path={"/user/sign-up"} element={<Signup />}></Route>
                 </Routes>

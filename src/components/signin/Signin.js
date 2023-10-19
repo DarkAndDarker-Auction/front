@@ -49,7 +49,7 @@ const Signin = () => {
         setCookie("accessToken", res.data.accessToken, { path: "/", expires: accessTokenExpires });
         setCookie("refreshToken", res.data.refreshToken, { path: "/", expires: refreshTokenExpires });
 
-        console.log(cookies.accessToken);
+        movePage("/auction");
     }
 
     const onChangeEmail = (event) => {
