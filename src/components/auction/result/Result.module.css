@@ -74,4 +74,29 @@
     justify-content: center;
     width: 20%;
     height: 100%;
+    background-color: blueviolet;
+}
+
+.remain_time {
+    width: 20%;
+    height: 100%;
+    background-color: bisque;
+}
+
+.info {
+    width: 30%;
+    height: 100%;
+    background-color: blue;
+}
+
+.price {
+    width: 30%;
+    height: 100%;
+    background-color: green;
+}
+
+.status {
+    width: 20%;
+    height: 100%;
+    background-color: yellow;
 }

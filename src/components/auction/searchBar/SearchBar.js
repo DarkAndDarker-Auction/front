@@ -6,6 +6,36 @@ import styles from './SearchBar.module.css'
 import { Autocomplete, TextField } from '@mui/material';
 import axios from 'axios';
 
+const search = async (itemName, option1, option2, option3) => {
+
+    const requestBody = {
+        optionSearchKeys: [],
+        nameSearchKey: itemName.name
+    };
+
+    const options = [option1, option2, option3];
+
+    options.forEach((option) => {
+        if (option && option.name !== null) {
+            requestBody.optionSearchKeys.push({
+                optionName: option.name,
+                optionValue: 0
+            });
+        }
+    });
+
+    try {
+        const res = await axios.post('http://localhost:8080/search/auction-item',
+            requestBody, {
+            withCredentials: false,
+        });
+        console.log(res);
+    } catch (error) {
+        console.log(error);
+        return false;
+    }
+}
+
 const SearchBar = () => {
     const dispatch = useDispatch();
 
