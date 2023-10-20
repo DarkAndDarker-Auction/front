@@ -1,5 +1,4 @@
 .searchbar_container {
-    background-color: brown;
     width: 30%;
     height: 100%;
     display: flex;
@@ -41,11 +40,13 @@
 }
 
 .dropdown_item {
-    width: 100%;
+    font-size: 14px;
 }
 
 .dropdown_list {
     width: 100%;
+    height: 200px;
+    overflow: scroll;
 }
 
 .item_name {

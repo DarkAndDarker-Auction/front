@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useDispatch } from 'react-redux';
 import { setSearchKey } from '../../features/searchKey/searchKeySlice'
 import SearchBar from './searchBar/SearchBar'
+import Result from './result/Result'
 import styles from './Auction.module.css'
 
 const Auction = () => {
@@ -30,6 +31,7 @@ const Auction = () => {
     return (
         <div className={styles.auction_container}>
             <SearchBar />
+            <Result />
             <div className="item-list"></div>
         </div>
     );

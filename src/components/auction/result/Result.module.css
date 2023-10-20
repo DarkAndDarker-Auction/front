@@ -1,0 +1,51 @@
+.result_container {
+    width: 70%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.result_label {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+.result_list_container {
+    background-color: aqua;
+    width: 90%;
+    height: 100%;
+}
+
+.result_item {
+    width: 100%;
+    height: 12%;
+    display: flex;
+    flex-direction: row;
+    background-color: blueviolet;
+}
+
+.remain_time {
+    width: 20%;
+    height: 100%;
+    background-color: bisque;
+}
+
+.info {
+    width: 30%;
+    height: 100%;
+    background-color: blue;
+}
+
+.price {
+    width: 30%;
+    height: 100%;
+    background-color: green;
+}
+
+.status {
+    width: 20%;
+    height: 100%;
+    background-color: yellow;
+}
