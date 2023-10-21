@@ -14,12 +14,6 @@ const signup = async (email, password, nickname) => {
         }, {
             withCredentials: false,
         });
-
-        // // accessToken, refreshToken 로컬스토리지 저장.
-        // const { accessToken, refreshToken } = res.data;
-        // localStorage.setItem('accessToken', accessToken);
-        // localStorage.setItem('refreshToken', refreshToken);
-
         return true;
 
     } catch (error) {

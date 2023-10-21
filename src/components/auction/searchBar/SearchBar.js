@@ -1,43 +1,14 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { setSearchResult } from '../../../features/searchKey/searchResultSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './SearchBar.module.css'
 import { Autocomplete, TextField } from '@mui/material';
 import axios from 'axios';
 
-const search = async (itemName, option1, option2, option3) => {
-
-    const requestBody = {
-        optionSearchKeys: [],
-        nameSearchKey: itemName.name
-    };
-
-    const options = [option1, option2, option3];
-
-    options.forEach((option) => {
-        if (option && option.name !== null) {
-            requestBody.optionSearchKeys.push({
-                optionName: option.name,
-                optionValue: 0
-            });
-        }
-    });
-
-    try {
-        const res = await axios.post('http://localhost:8080/search/auction-item',
-            requestBody, {
-            withCredentials: false,
-        });
-        console.log(res);
-    } catch (error) {
-        console.log(error);
-        return false;
-    }
-}
-
 const SearchBar = () => {
+    const dispatch = useDispatch();
 
-    const [selectedItem, setSelectedItem] = useState(null);
     const [itemType, setItemType] = useState(null);
     const [itemName, setItemName] = useState(null);
     const [option1, setOption1] = useState(null);
@@ -48,6 +19,39 @@ const SearchBar = () => {
     const searchKeySlotTypes = useSelector((state) => state.searchKey.searchKey.slotTypes);
     const searchKeyItemOptions = useSelector((state) => state.searchKey.searchKey.itemOptions);
     const searchKeyItems = useSelector((state) => state.searchKey.searchKey.items);
+
+    const search = async (itemName, option1, option2, option3, dispatch) => {
+        const requestBody = {
+            optionSearchKeys: [],
+            nameSearchKey: itemName.name
+        };
+
+        console.log(requestBody);
+
+        const options = [option1, option2, option3];
+
+        options.forEach((option) => {
+            if (option && option.name !== null) {
+                requestBody.optionSearchKeys.push({
+                    optionName: option.name,
+                    optionValue: 0
+                });
+            }
+        });
+
+        try {
+            const res = await axios.post('http://localhost:8080/search/auction-item',
+                requestBody, {
+                withCredentials: false,
+            });
+            dispatch(setSearchResult(res.data));
+            return true;
+
+        } catch (error) {
+            console.log(error);
+            return false;
+        }
+    }
 
     const handleItemType = (event, value) => {
         setItemType(value);
@@ -71,7 +75,7 @@ const SearchBar = () => {
 
     const handleSearch = (event) => {
         event.preventDefault();
-        const res = search(itemName, option1, option2, option3);
+        const res = search(itemName, option1, option2, option3, dispatch);
     }
 
     return (
@@ -88,7 +92,6 @@ const SearchBar = () => {
                     onChange={handleItemType}
                     sx={{ width: 250 }}
                     renderInput={(params) => <TextField {...params} label="ItemType" />}
-                    vluae
                 />
             </div>
 
@@ -102,7 +105,6 @@ const SearchBar = () => {
                     onChange={handleItemName}
                     sx={{ width: 250 }}
                     renderInput={(params) => <TextField {...params} label="Item" />}
-                    vluae
                 />
             </div>
 
@@ -118,7 +120,6 @@ const SearchBar = () => {
                     onChange={handleOption1}
                     sx={{ width: 250 }}
                     renderInput={(params) => <TextField {...params} label="Item Option" />}
-                    vluae
                 />
             </div>
 
@@ -132,7 +133,6 @@ const SearchBar = () => {
                     onChange={handleOption2}
                     sx={{ width: 250 }}
                     renderInput={(params) => <TextField {...params} label="Item Option" />}
-                    vluae
                 />
             </div>
 
@@ -146,7 +146,6 @@ const SearchBar = () => {
                     onChange={handleOption3}
                     sx={{ width: 250 }}
                     renderInput={(params) => <TextField {...params} label="Item Option" />}
-                    vluae
                 />
             </div>
             <button type='submit' onClick={handleSearch}>SEARCH</button>

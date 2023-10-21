@@ -7,9 +7,7 @@ import Result from './result/Result'
 import styles from './Auction.module.css'
 
 const Auction = () => {
-
-    const dispatch = useDispatch();
-    console.log("Auction component rendered");
+    const dispatch = useDispatch((state) => state.searchResult);
 
     const searchKeyApi = async () => {
         try {

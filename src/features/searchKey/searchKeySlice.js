@@ -6,7 +6,7 @@ const initialState = {
 }
 
 const searchKeySlice = createSlice({
-    name: 'auth',
+    name: 'searchKet',
     initialState: initialState,
     reducers: {
         setSearchKey: (state, action) => {

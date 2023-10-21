@@ -13,7 +13,6 @@
 }
 
 .result_list_container {
-    background-color: aqua;
     width: 90%;
     height: 100%;
 }
@@ -23,29 +22,56 @@
     height: 12%;
     display: flex;
     flex-direction: row;
-    background-color: blueviolet;
+    border: 3px inset white;
+    margin-bottom: 1px;
+    cursor: pointer;
 }
 
 .remain_time {
-    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
     height: 100%;
     background-color: bisque;
+    position: relative;
 }
 
 .info {
-    width: 30%;
-    height: 100%;
-    background-color: blue;
+    position: absolute;
+    display: none;
+    transform: translateX(-50%);
+    z-index: 999;
 }
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 35%;
+    height: 100%;
+}
+
 
 .price {
     width: 30%;
     height: 100%;
-    background-color: green;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
+.price>div {
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
 }
 
 .status {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     width: 20%;
     height: 100%;
-    background-color: yellow;
 }
