@@ -14,7 +14,7 @@ const signup = async (email, password, nickname) => {
         }, {
             withCredentials: false,
         });
-
+      
         return true;
 
     } catch (error) {

@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.14",
     "@reduxjs/toolkit": "^1.9.5",
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -19,6 +22,7 @@
     "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
     "stompjs": "^2.3.3",
+    "tom-select": "^2.2.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -44,5 +48,10 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@babel/plugin-proposal-numeric-separator": "^7.18.6",
+    "@jridgewell/sourcemap-codec": "^1.4.15",
+    "stable": "^0.1.8"
   }
 }
