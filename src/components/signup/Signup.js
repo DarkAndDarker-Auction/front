@@ -202,7 +202,7 @@ const Signup = () => {
             <div className={styles.input_container}>
                 <label htmlFor="repeatPassword">Repeat Password</label>
                 <input type="password" onChange={onChangeRepeatPassword} onBlur={onBlurRepeatPassword} name="repeatPassword" />
-                {!isPasswordMatched && <div className={`${styles.input_container} ${styles.input_validation_incorrect}`}>일치하지 않는 비밀번호 입니다.</div>}
+                {!isPasswordMatched && <div className={`${styles.input_container} ${styles.input_validation_incorrect}`}>비밀번호를 확인해주세요.</div>}
                 {isPasswordMatched && <div className={`${styles.input_container} ${styles.input_validation_correct}`}>일치하는 비밀번호 입니다.</div>}
             </div>
 

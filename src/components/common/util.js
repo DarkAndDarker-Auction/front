@@ -9,3 +9,13 @@ export const removeWhitespace = text => {
     const regex = /\s/g;
     return text.replace(regex, '');
 }
+
+export const capitalizeFirstLetter = string => {
+    return string.replace(/_/g, ' ')
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+        .join(' ');
+}
+
+
+export const nonOptionProps = ['allowOffer', 'auctionStatusType', 'expirationTime', 'id', 'item', 'priceEventCurrency', 'priceGold', 'priceGoldIngot', 'priceGoldenKey', 'rarity'];

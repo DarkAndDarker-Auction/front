@@ -14,16 +14,21 @@ const SearchBar = () => {
     const [option1, setOption1] = useState(null);
     const [option2, setOption2] = useState(null);
     const [option3, setOption3] = useState(null);
+    const [pageNumber, setPageNumber] = useState(0);
 
 
     const searchKeySlotTypes = useSelector((state) => state.searchKey.searchKey.slotTypes);
     const searchKeyItemOptions = useSelector((state) => state.searchKey.searchKey.itemOptions);
     const searchKeyItems = useSelector((state) => state.searchKey.searchKey.items);
 
+    const PAGE_SIZE = 7;
+
     const search = async (itemName, option1, option2, option3, dispatch) => {
         const requestBody = {
             optionSearchKeys: [],
-            nameSearchKey: itemName.name
+            pageSize: PAGE_SIZE,
+            pageNumber: pageNumber,
+            nameSearchKey: itemName.name,
         };
 
         console.log(requestBody);
