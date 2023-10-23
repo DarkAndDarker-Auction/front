@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux';
 import { setSearchResult } from '../../../features/searchKey/searchResultSlice';
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -14,14 +14,21 @@ const SearchBar = () => {
     const [option1, setOption1] = useState(null);
     const [option2, setOption2] = useState(null);
     const [option3, setOption3] = useState(null);
-    const [pageNumber, setPageNumber] = useState(0);
+    const [afterSearch, setAfterSearch] = useState(false);
 
 
     const searchKeySlotTypes = useSelector((state) => state.searchKey.searchKey.slotTypes);
     const searchKeyItemOptions = useSelector((state) => state.searchKey.searchKey.itemOptions);
     const searchKeyItems = useSelector((state) => state.searchKey.searchKey.items);
+    const pageNumber = useSelector((state) => state.pageNumber.pageNumber);
 
-    const PAGE_SIZE = 7;
+    const PAGE_SIZE = 8;
+
+    useEffect(() => {
+        if (afterSearch) {
+            search(itemName, option1, option2, option3, dispatch);
+        }
+    }, [pageNumber]);
 
     const search = async (itemName, option1, option2, option3, dispatch) => {
         const requestBody = {
@@ -81,6 +88,7 @@ const SearchBar = () => {
     const handleSearch = (event) => {
         event.preventDefault();
         const res = search(itemName, option1, option2, option3, dispatch);
+        setAfterSearch(true);
     }
 
     return (

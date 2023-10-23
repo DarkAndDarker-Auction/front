@@ -1,15 +1,23 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import styles from './Result.module.css'
 import { nonOptionProps, capitalizeFirstLetter } from '../../common/util';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { setPageNumber } from '../../../features/searchKey/pageNumber';
 
 const Result = () => {
+    const dispatch = useDispatch();
+    const isInitialMount = useRef(true);
+
     const [auctionItems, setAuctionItems] = useState(null);
 
+    const pageNumber = useSelector((state) => state.pageNumber.pageNumber)
     const searchResult = useSelector((state) => state.searchResult.searchResult);
+
     useEffect(() => {
-        setAuctionItems(searchResult.auctionItems);
-        console.log(searchResult.auctionItems);
+        if (!isInitialMount.current) {
+            setAuctionItems(searchResult.auctionItems);
+        }
+        isInitialMount.current = false;
     }, [searchResult])
 
     const calculateReaminTime = (expirationTime) => {
@@ -30,7 +38,7 @@ const Result = () => {
 
     const extractOptionFromAuctionItem = (auctionItem) => {
         const auctionItemOptions = { ...auctionItem };
-        console.log(auctionItemOptions)
+
         nonOptionProps.forEach(prop => delete auctionItemOptions[prop]);
 
         return Object.entries(auctionItemOptions).map(([key, value], index) => {
@@ -49,8 +57,8 @@ const Result = () => {
         const info = document.getElementById(`info_${e.target.id}`);
         if (info) {
             info.style.display = "block";
-            info.style.left = `${e.clientX + 150}px`; // 마우스의 X 위치에 툴팁 표시
-            info.style.top = `${e.clientY}px`; // 마우스의 Y 위치에 툴팁 표시
+            info.style.left = `${e.clientX + 170}px`; // 마우스의 X 위치에 툴팁 표시
+            info.style.top = `${e.clientY - 20}px`; // 마우스의 Y 위치에 툴팁 표시
         }
     }
 
@@ -58,6 +66,20 @@ const Result = () => {
         const info = document.getElementById(`info_${e.target.id}`);
         if (info) {
             info.style.display = "none";
+        }
+    }
+
+    const handleNextPage = () => {
+        if (searchResult.total !== undefined && pageNumber + 1 < Math.ceil(searchResult.total / 8)) {
+            console.log(pageNumber);
+            console.log(Math.ceil(searchResult.total / 8));
+            dispatch(setPageNumber(pageNumber + 1));
+        }
+    }
+
+    const handlePrevPage = () => {
+        if (pageNumber > 0) {
+            dispatch(setPageNumber(pageNumber - 1));
         }
     }
 
@@ -75,7 +97,6 @@ const Result = () => {
                         </div>
                         <div className={styles.remain_time}>
                             {calculateReaminTime(auctionItem.expirationTime)}
-                            {console.log(auctionItem)}
                         </div>
                         <div className={styles.item} id={`item_id_${auctionItem.id}`} onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
                             {capitalizeFirstLetter(auctionItem.item.name)}
@@ -91,6 +112,15 @@ const Result = () => {
                         </div>
                     </div>
                 ))}
+            </div>
+            <div className={styles.pagination}>
+                <div className={styles.pagination_prev} onClick={handlePrevPage}> &lt; </div>
+                <div className={styles.pagination_current}>{pageNumber + 1}</div>
+                /
+                <div className={styles.pagination_all}>
+                    {searchResult.total !== undefined ? Math.ceil(searchResult.total / 8) : 1}
+                </div>
+                <div className={styles.pagination_next} onClick={handleNextPage}>  &gt; </div>
             </div>
         </ div >
     )
