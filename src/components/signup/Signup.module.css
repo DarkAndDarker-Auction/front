@@ -6,7 +6,7 @@
     max-width: 400px;
     height: 600px;
     margin: auto;
-    padding-bottom: 50px;
+    margin-top: 50px;
     background-color: rgba(0, 0, 0, 0.700);
     border: 4px double #808080;
 }
@@ -23,6 +23,7 @@
 .submit_button {
     margin: auto;
     width: 70%;
+    margin-top: 20px;
     background-image: url('https://img.freepik.com/premium-photo/watercolor-dark-gray-background-texture-monochrome-water-color-painting_145343-126.jpg?w=360');
     color: white;
     padding: 10px;
@@ -72,7 +73,7 @@
     position: absolute;
     width: auto;
     bottom: 5px;
-    font-size: 8px;
+    font-size: 10px;
     left: 0px;
     color: red;
 }
@@ -81,9 +82,18 @@
     position: absolute;
     width: auto;
     bottom: 5px;
-    font-size: 8px;
+    font-size: 10px;
     left: 0px;
     color: green;
+}
+
+.verification_remain_time {
+    position: absolute;
+    width: auto;
+    bottom: 5px;
+    font-size: 10px;
+    right: 0;
+    color: red;
 }
 
 .input_container input::placeholder {

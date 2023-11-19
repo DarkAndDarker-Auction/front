@@ -1,0 +1,365 @@
+.detail_container {
+    width: 100%;
+}
+
+.header {
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: 70px;
+    background-color: #252830;
+    border-radius: 5px;
+    position: relative;
+}
+
+.header>div {
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.header__btn {
+    height: 100%;
+    width: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.header__btn:hover {
+    filter: brightness(1.2);
+}
+
+.wish_list {
+    background-color: #353946;
+}
+
+.delete {
+    background-color: #26272e;
+}
+
+.like_tooltip {
+    display: none;
+    position: absolute;
+    font-size: 12px;
+    width: 80px;
+    text-align: center;
+    background-color: #443A2B;
+    color: #fff;
+    padding: 5px;
+    border-radius: 5px;
+    top: -35px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.item_name {
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    font-size: 28px;
+}
+
+.rarity {
+    font-size: 16px;
+}
+
+.details_wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.details {
+    background-color: #252830;
+    width: 77%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.auction_details {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: row;
+    background-color: #1A1D23;
+    height: 80px;
+    width: 90%;
+    border-radius: 5px;
+}
+
+.time_wrapper {
+    font-size: 14px;
+    height: 100%;
+    padding-left: 30px;
+    padding-right: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.time_wrapper>span {
+    height: 25px;
+    display: flex;
+    align-items: center;
+}
+
+.item_details {
+    margin-top: 40px;
+    padding: 40px 50px 40px 20px;
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    background-color: #1C1E25;
+    border-radius: 5px;
+}
+
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    padding-left: 20px;
+    width: 50%;
+}
+
+.image_box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 25%;
+}
+
+.item_info {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+}
+
+.item_info>div {
+    font-size: 28px;
+}
+
+.item_info>span {
+    font-size: 14px;
+    color: white;
+}
+
+.option {
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.info_option {
+    width: 100%;
+    font-size: 14px;
+    color: #1590C7;
+    padding-top: 5px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.info_option>div {
+    display: flex;
+    flex-direction: row;
+}
+
+.offers_title {
+    margin: 30px 0px 20px 0;
+    width: 90%;
+    font-size: 24px;
+    color: #B89971;
+    border-bottom: 1px solid #847253;
+}
+
+.offers_container {
+    width: 90%;
+    min-height: 250px;
+    font-size: 28px;
+    color: #847253;
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+}
+
+.offers_wrapper {
+    width: 100%;
+    padding: 20px 20px 20px 20px;
+    border-radius: 5px;
+    background-color: #181A20;
+}
+
+.offer {
+    border-radius: 5px;
+    font-size: 15px;
+    display: flex;
+    height: 3.0rem;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.offer_price {
+    display: flex;
+    flex-direction: row;
+}
+
+.offer_price>div {
+    border-radius: 5px;
+    margin-left: 10px;
+    font-size: 14px;
+    height: 1.8rem;
+    padding: 0 10px 0 10px;
+    background-color: #363946;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.offer_price__btn {
+    cursor: pointer;
+    color: white;
+}
+
+.offer_price__btn:hover {
+    filter: brightness(1.2);
+}
+
+.btn__confirm_offer {
+    background-color: #1590C7 !important;
+}
+
+.btn__delete_offer {
+    background-color: red !important;
+}
+
+.offer_price>div>span {
+    color: #DD9A14;
+    padding-right: 5px;
+}
+
+.offers_container>button {
+    width: 15%;
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: #847253;
+    border: none;
+    color: #443A2B;
+}
+
+.no_offers {
+    font-size: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+}
+
+.details_side_container {
+    width: 20%;
+}
+
+.seller_profile {
+    min-height: 100px;
+    border-radius: 5px;
+    background-color: #252830;
+    margin-bottom: 30px;
+    padding: 10px 15px 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    color: #B89971;
+}
+
+.item_price {
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 5px 10px;
+    border: 1px solid #B89971;
+    border-radius: 5px;
+    margin-bottom: 15px;
+}
+
+.item_price_title {
+    padding: 0 5px 0 5px;
+    text-align: center;
+    font-size: 18px !important;
+    position: absolute;
+    top: -15px;
+    background-color: #1F2129 !important;
+    color: #B89971;
+}
+
+.item_price>div {
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.item_price>div>div {
+    text-align: end;
+    display: flex;
+    align-items: center;
+}
+
+.item_price_wrapper>span {
+    color: #DD9A14;
+    padding-right: 5px;
+}
+
+.price_image_box {
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.item_price>div>div>img {
+    height: 30px;
+}
+
+.buy_btn {
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #B89971;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.buy_btn:hover {
+    filter: brightness(0.7);
+}
+
+.offer_btn {
+    height: 40px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #353946;
+    margin-bottom: 15px;
+    cursor: pointer;
+}
+
+.offer_btn:hover {
+    filter: brightness(0.7);
+}

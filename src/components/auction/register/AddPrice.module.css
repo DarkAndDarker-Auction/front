@@ -1,0 +1,147 @@
+.modal {
+    position: absolute;
+    top: 20%;
+    left: 35%;
+    width: 30%;
+    background-color: #1A1B20;
+    padding: 20px 20px 20px 20px;
+    border: 1px solid #847253;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.modal>span {
+    font-size: 18px;
+    color: #B89971;
+}
+
+.item_price_container {
+    margin-top: 30px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.header {
+    width: 100%;
+    padding-left: 10px;
+    display: block;
+    text-align: left;
+    font-size: 18px;
+    height: 50px;
+}
+
+.empty_options {
+    width: 100%;
+    height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("https://image.chaoscube.co.kr/duriel/base/mosaic_dark.png");
+    background-color: #292C32;
+    font-size: 14px;
+}
+
+.price_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.img_box {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.img_box>img {
+    height: 40px;
+}
+
+.price_input_wrapper_wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin: auto;
+}
+
+.price_input_wrapper_wrapper>span {
+    cursor: pointer;
+}
+
+.price_input_wrapper {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px 0 0;
+    height: 50px;
+    background-color: #1A1C20;
+    border: 1px solid #B89971;
+    font-size: 16px;
+    margin-right: 15px;
+    width: 100%;
+}
+
+.price_value {
+    border: none;
+    background-color: #1A1C20;
+    padding-right: 10px;
+    border-right: 1px solid #B89971;
+    text-align: right;
+    outline: none;
+    margin-right: 10px;
+    color: #B89971;
+    font-size: 18px;
+    width: 120px;
+}
+
+.price_input_wrapper>span {
+    width: 90px;
+    font-size: 12px;
+}
+
+.currency_type {
+    margin-left: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn_wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: end;
+}
+
+.btn_wrapper>button {
+    margin: 20px 0 0 10px;
+    border: none;
+    width: 120px;
+    height: 40px;
+    font-size: 14px;
+}
+
+.btn_wrapper>button:hover {
+    filter: brightness(0.7);
+}
+
+.add_btn {
+    background-color: #847253;
+}
+
+.exit_btn {
+    background-color: gray;
+
+}

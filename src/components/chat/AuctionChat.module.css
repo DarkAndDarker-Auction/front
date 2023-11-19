@@ -1,0 +1,60 @@
+.auction_chat_container {
+    border: 1px solid #F6F6F6;
+    height: 90vh;
+    margin-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.auction_chat_container>div {
+    width: 50%;
+    height: 100%;
+}
+
+.chat_room_header {
+    height: 20%;
+    background-color: #1B1D22;
+    border-bottom: 1px solid #F6F6F6;
+    font-size: 28px;
+    font-weight: bold;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chat_room_list {
+    width: 100%;
+    overflow-y: scroll;
+    min-height: 80%;
+}
+
+.chat_room_wrapper {
+    height: 90px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: antiquewhite;
+    padding: 0 10px 0 30px;
+}
+
+.chat_room_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.nickname {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.breif_content {
+    font-size: 14px;
+}
+
+.breif_content>span {
+    font-size: 12px;
+}
+
+.auction_chat__chat {
+    width: 100%;
+}

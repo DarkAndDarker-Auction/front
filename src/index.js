@@ -1,26 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
-import axios from 'axios';
 import store from './store'
 import { Provider } from 'react-redux';
 import { CookiesProvider } from 'react-cookie';
 import reportWebVitals from './reportWebVitals';
 import App from './App'
-
-axios.defaults.baseURL = 'http://localhost:8080';
-axios.defaults.withCredentials = true;
+import { BrowserRouter } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <CookiesProvider>
-      <Provider store={store}>
-        <App />
-      </Provider>
-    </CookiesProvider>
-  </React.StrictMode>
 
+root.render(
+  <CookiesProvider>
+    <Provider store={store}>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </Provider>
+  </CookiesProvider>
 
 );
 

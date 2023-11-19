@@ -1,0 +1,44 @@
+.modal {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 22%;
+    background-color: #2e2e2e;
+    border: none;
+    border-radius: 5px;
+}
+
+.alert_header {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px 5px 0 0;
+    align-items: center;
+    background-color: #29292b;
+    font-size: 18px;
+}
+
+.alert_body {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px 20px 30px;
+    text-align: center;
+}
+
+.exit_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    background-color: #454443;
+    border-radius: 0 0 5px 5px;
+    cursor: pointer;
+}
+
+.exit_btn:hover {
+    filter: brightness(0.7);
+}

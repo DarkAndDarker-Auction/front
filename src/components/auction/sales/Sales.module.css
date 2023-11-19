@@ -1,0 +1,24 @@
+.search_title {
+    margin-bottom: 40px;
+    font-size: 28px;
+    color: #B89971;
+    border-bottom: 1px solid #B89971;
+}
+
+.auction_tab {
+    margin-bottom: 50px;
+    border: 1px solid #847257;
+    border-bottom: none;
+}
+
+.auction_tab button {
+    width: 25%;
+    background-color: #847257;
+    height: 40px;
+    border: none;
+    font-size: 16px;
+}
+
+.auction_tab button:hover {
+    filter: brightness(1.2);
+}
