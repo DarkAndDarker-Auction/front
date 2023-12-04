@@ -12,16 +12,14 @@ const WishList = () => {
     const [url, setUrl] = useState("/wishlist");
 
     useEffect(() => {
-        console.log("wishList mounted");
-        getMyWishList();
-    }, [])
-
-    useEffect(() => {
         getMyWishList();
     }, [sort]);
 
+    useEffect(() => {
+        console.log(myWishList);
+    }, [myWishList])
+
     const getMyWishList = async () => {
-        console.log(sort);
         const destinationUrl = `${url}?page=${pageNumber}&size=${PAGE_SIZE}&sort=${sort}`;
         try {
             const { data } = await axios.get(destinationUrl);

@@ -1,12 +1,9 @@
 import React, { useEffect, useState, useRef } from 'react'
 import styles from './Result.module.css'
-import Alert from '../../common/Alert';
-import { nonOptionProps, capitalizeFirstLetter, calculateReaminTime } from '../../common/Utils';
-import { currencyTypeList } from '../../common/Utils';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import Select from '@mui/material/Select';
-import { FormControl } from '@mui/material';
+import Alert from '../../common/utils/Alert';
+import { nonOptionProps, capitalizeFirstLetter, calculateReaminTime } from '../../common/utils/Utils';
+import { currencyTypeList } from '../../common/utils/Utils';
+import { FormControl, Select, MenuItem, InputLabel } from '@mui/material';
 import Pagination from '@mui/material/Pagination';
 import { useNavigate } from 'react-router-dom';
 import { useCookies } from 'react-cookie';
@@ -140,7 +137,7 @@ const Result = ({ pageNumber, getPageNumber, sort, getSort, searchResult, tab })
                     <Select
                         size='small'
                         value={sort}
-                        label="Age"
+                        label="Sort"
                         onChange={handleSort}
                         sx={{ paddingBottom: "3px", height: "32px", fontSize: "14px" }}
                     >

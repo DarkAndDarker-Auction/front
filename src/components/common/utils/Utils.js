@@ -1,10 +1,8 @@
-// email형식 확인
-export const validateEmail = email => {
-    const regex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+export const validateEmail = (email) => {
+    const regex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return regex.test(email);
-}
+};
 
-// 공백 제거
 export const removeWhitespace = text => {
     const regex = /\s/g;
     return text.replace(regex, '');
@@ -47,20 +45,48 @@ export const formatTimeDifference = (offeredAt) => {
     const timestamp = new Date(offeredAt);
     const now = new Date();
     const timeDifference = now - timestamp;
-    const hours = Math.floor(timeDifference / 3600000); // 1 hour = 3600000 milliseconds
-    const minutes = Math.floor((timeDifference % 3600000) / 60000); // 1 minute = 60000 milliseconds
+    const seconds = Math.floor(timeDifference / 1000);
+    const minutes = Math.floor(seconds / 60);
+    const hours = Math.floor(minutes / 60);
+    const days = Math.floor(hours / 24);
+    const months = Math.floor(days / 30);
+    const years = Math.floor(months / 12);
 
-    if (hours > 0) {
-        return `${hours}h ${minutes}m ago`;
+    if (years > 0) {
+        return `${years}년 전`;
+    } else if (months > 0) {
+        return `${months}개월 전`;
+    } else if (days > 0) {
+        return `${days}일 전`;
+    } else if (hours > 0) {
+        return `${hours}시간 전`;
+    } else if (minutes > 0) {
+        return `${minutes}분 전`;
     } else {
-        return `${minutes}m ago`;
+        return `${seconds}초 전`;
     }
 }
 
 export const formatLocalTime = (time) => {
     const timeDate = new Date(time);
     return timeDate.toLocaleString('en-US', { hour12: false }).replace(",", "");
+}
 
+export const formatLocalTimeForMessage = (time) => {
+    const originalDate = new Date(time);
+
+    // UTC를 기준으로 시간을 가져옴
+    const hoursUTC = originalDate.getUTCHours().toString().padStart(2, '0');
+    const minutesUTC = originalDate.getUTCMinutes().toString().padStart(2, '0');
+
+    return `${hoursUTC}:${minutesUTC}`;
+}
+
+export const formatLocalDate = (date) => {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year} / ${month} / ${day}`;
 }
 
 export const currencyTypeList = [

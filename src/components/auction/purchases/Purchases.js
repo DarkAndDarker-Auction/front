@@ -29,15 +29,14 @@ const Purchases = () => {
 
     useEffect(() => {
         if (url === "") return;
+        console.log(url);
         getMyPurchases();
     }, [pageNumber, url]);
 
     const getMyPurchases = async () => {
         const destinationUrl = `${url}?page=${pageNumber}&size=${PAGE_SIZE}&sort=${sort}`;
-        console.log(destinationUrl);
         try {
             const { data } = await axios.get(destinationUrl);
-            console.log(data);
             setMyPurchases(data);
 
         } catch (error) {

@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux';
 import styles from './Register.module.css'
 import stylesItem from '../result/Result.module.css'
 import { Autocomplete, TextField } from '@mui/material';
-import { capitalizeFirstLetter } from '../../common/Utils';
+import { capitalizeFirstLetter } from '../../common/utils/Utils';
 import KeyboardDoubleArrowDownIcon from '@mui/icons-material/KeyboardDoubleArrowDown';
 import KeyboardDoubleArrowUpIcon from '@mui/icons-material/KeyboardDoubleArrowUp';
 import FormControlLabel from '@mui/material/FormControlLabel';
@@ -148,7 +148,7 @@ const Register = () => {
                     </div>
                     <div className={styles.item_details}>
                         <div className={styles.item_image}>
-                            <img src="https://darkanddarker.wiki.spellsandguns.com/images/thumb/8/89/Rapier_2.png/60px-Rapier_2.png" alt="" />
+                            <img src={item.image} alt="" />
                         </div>
                         <div className={styles.item_info}>
                             <div>{capitalizeFirstLetter(item.name)}&nbsp;|&nbsp;

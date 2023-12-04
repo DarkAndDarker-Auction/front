@@ -14,19 +14,6 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const messaging = firebase.messaging();
 
-// self.addEventListener("push", receivePushNotification);
-//
-// function receivePushNotification(event) {
-//     // This prints "Test push message from DevTools."
-//     console.log("[Service Worker] Push Received.", event.data.text());
-//
-//     var options = {
-//         body: "This notification was generated from a push!"
-//     };
-//
-//     event.waitUntil(self.registration.showNotification("Hello world!", options));
-// }
-
 messaging.onBackgroundMessage((payload) => {
     console.log(
         '[firebase-messaging-sw.js] Received background message ',

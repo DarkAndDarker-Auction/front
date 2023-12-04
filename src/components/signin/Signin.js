@@ -41,8 +41,6 @@ const Signin = ({ signinSuccess }) => {
         const res = await signin(email, password);
 
         if (res) {
-            window.location.reload();
-            movePage(-1);
             signinSuccess();
             return;
         }
@@ -86,7 +84,7 @@ const Signin = ({ signinSuccess }) => {
                 <div className="line"></div>
                 <div className={styles.signup_notice}>
                     have no account?
-                    <div href="" className="signup" onClick={onClickSignup}> Sign Up </div>
+                    <div className={styles.signup} onClick={onClickSignup}> &nbsp;Sign Up </div>
                 </div>
             </div>
         </div>

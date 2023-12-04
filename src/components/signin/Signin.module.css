@@ -4,7 +4,7 @@
 }
 
 .signin_background_wrapper {
-    width: 100vi;
+    width: 99vi;
     height: 93vh;
     background-image: url("https://i.blogs.es/e1af2c/dark-and-darker-bitorrent/1366_2000.webp");
     background-size: cover;
@@ -98,6 +98,17 @@
     margin-top: 20px;
     color: white;
     text-align: center;
+}
+
+.signup {
+    display: inline-block;
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.signup:hover {
+    filter: brightness(1.2);
 }
 
 .line {

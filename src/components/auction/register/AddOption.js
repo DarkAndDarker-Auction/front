@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import styles from "./AddOption.module.css"
 import Modal from 'react-modal';
 import { Autocomplete, TextField } from "@mui/material";
-import { capitalizeFirstLetter } from "../../common/Utils";
+import { capitalizeFirstLetter } from "../../common/utils/Utils";
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import CloseIcon from '@mui/icons-material/Close';
-import Alert from "../../common/Alert";
+import Alert from "../../common/utils/Alert";
 
 const AddOption = ({ searchKeyItemOptions, isOpen, onRequestClose, getItemOptions }) => {
 

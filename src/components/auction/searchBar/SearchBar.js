@@ -4,7 +4,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import styles from './SearchBar.module.css'
 import { Autocomplete, TextField } from '@mui/material';
 import axios from 'axios';
-import { capitalizeFirstLetter } from '../../common/Utils';
+import { capitalizeFirstLetter } from '../../common/utils/Utils';
 import { useLocation, useNavigate } from 'react-router-dom';
 import SearchIcon from '@mui/icons-material/Search';
 import RefreshIcon from '@mui/icons-material/Refresh';
@@ -26,10 +26,15 @@ const SearchBar = ({ slotTypes, options, rarities, items }) => {
     const [searchResult, setSearchResult] = useState([]);
 
     const search = async () => {
+        console.log(itemSlotType);
         const nameSearchKey = itemName !== 'null' ? itemName : null;
+        const raritySearchKey = itemRarity !== null ? itemRarity.id : null;
+        const slotTypeSearchKey = itemSlotType !== null ? itemSlotType.id : null;
 
         const requestBody = {
             optionSearchKeys: [],
+            raritySearchKey: raritySearchKey,
+            slotTypeSearchKey: slotTypeSearchKey,
             pageSize: PAGE_SIZE,
             pageNumber: pageNumber,
             nameSearchKey: nameSearchKey,
@@ -43,9 +48,8 @@ const SearchBar = ({ slotTypes, options, rarities, items }) => {
             }
         });
         try {
-            const { data } = await axios.post(`/search/auction-item?page=${pageNumber}&size=${PAGE_SIZE}&sort=${sort}`, requestBody);
+            const { data } = await axios.post(`http://localhost:8080/search/auction-item?page=${pageNumber}&size=${PAGE_SIZE}&sort=${sort}`, requestBody);
             setSearchResult(data);
-            console.log(data);
 
             const queryString = `?itemName=${itemName}${itemOptions.map((option) => `&itemOptions=${option}`).join('')}`;
             movePage(`${location.pathname}${queryString} `);
@@ -82,7 +86,9 @@ const SearchBar = ({ slotTypes, options, rarities, items }) => {
 
     const handleItemRarity = (_, value) => {
         const element = document.querySelector(`.${styles.searchkey_rarity} input`);
-        element.style.setProperty('color', value.colorCode, 'important');
+        if (value !== null) {
+            element.style.setProperty('color', value.colorCode, 'important');
+        }
         setItemRarity(value);
     }
 

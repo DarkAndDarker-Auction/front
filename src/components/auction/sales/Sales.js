@@ -16,8 +16,6 @@ const Sales = () => {
     const [mySales, setMySales] = useState([]);
     const [url, setUrl] = useState("");
 
-    console.log("mounted");
-
     useEffect(() => {
         if (initialMount.current) {
             let curTabValue = sessionStorage.getItem('salesTabValue');
@@ -39,7 +37,6 @@ const Sales = () => {
             return;
         }
         const destinationUrl = `${url}?page=${pageNumber}&size=${PAGE_SIZE}&sort=${sort}`;
-        console.log(destinationUrl);
         try {
             const res = await axios.get(destinationUrl);
             setMySales(res.data);

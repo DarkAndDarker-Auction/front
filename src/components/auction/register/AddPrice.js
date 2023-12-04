@@ -4,8 +4,8 @@ import { Autocomplete, TextField } from "@mui/material";
 import Modal from 'react-modal';
 import ArrowUpwardIcon from '@mui/icons-material/ArrowUpward';
 import CloseIcon from '@mui/icons-material/Close';
-import { currencyTypeList } from "../../common/Utils";
-import Alert from "../../common/Alert";
+import { currencyTypeList } from "../../common/utils/Utils";
+import Alert from "../../common/utils/Alert";
 
 const AddPrice = ({ isOpen, onRequestClose, deliverItemPrices }) => {
 
@@ -43,7 +43,6 @@ const AddPrice = ({ isOpen, onRequestClose, deliverItemPrices }) => {
     const handleAddPrice = () => {
         const priceValues = document.querySelectorAll(`.${styles.price_value}`);
         let valueValidation = true;
-        console.log(priceValues);
         priceValues.forEach((optionValue) => {
             if (optionValue.value === '') {
                 setIsModalOpen(true);

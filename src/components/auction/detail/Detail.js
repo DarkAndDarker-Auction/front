@@ -2,18 +2,19 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import styles from './Detail.module.css'
 import stylesItem from '../result/Result.module.css'
-import { calculateReaminTime, capitalizeFirstLetter, currencyTypeList, formatLocalTime, nonOptionProps } from '../../common/Utils';
+import { calculateReaminTime, capitalizeFirstLetter, currencyTypeList, formatLocalTime, nonOptionProps } from '../../common/utils/Utils';
 import axios from 'axios';
-import { formatTimeDifference } from '../../common/Utils';
+import { formatTimeDifference } from '../../common/utils/Utils';
 import { useCookies } from 'react-cookie'
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import CloseIcon from '@mui/icons-material/Close';
 import Tooltip from '@mui/material/Tooltip';
-import Alert from '../../common/Alert';
-import Confirm from '../../common/Confirm';
+import Alert from '../../common/utils/Alert';
+import Confirm from '../../common//utils/Confirm';
 import AddPrice from '../register/AddPrice';
 import { jwtDecode } from 'jwt-decode';
+import { NEW_OFFER_NOTIFICATION_BODY, NEW_OFFER_NOTIFICATION_TITLE, OFFER_CONFIRMED_NOTIFICATION_BODY, OFFER_CONFIRMED_NOTIFICATION_TITLE, SOLD_OUT_NOTIFICATION, SOLD_OUT_NOTIFICATION_BODY, SOLD_OUT_NOTIFICATION_TITLE, sendNotification } from '../../../features/notification/SendNotification';
 
 const Detail = () => {
     const lodash = require('lodash');
@@ -40,13 +41,13 @@ const Detail = () => {
         nonOptionProps.forEach(prop => delete auctionItemOptions[prop]);
 
         return Object.entries(auctionItemOptions).map(([key, value], index) => {
-            const formattedKey = capitalizeFirstLetter(key.replace(/_/g, ' '));
+            const optionName = capitalizeFirstLetter(key.replace(/_/g, ' '));
             return (
                 <div className={styles.info_option} key={`option_${index}`}>
                     <div>-&nbsp;</div>
                     <div>
                         <div className={stylesItem.option_value}>+{value}</div>
-                        <div className={stylesItem.option_key}>{formattedKey}</div>
+                        <div className={stylesItem.option_key}>{optionName}</div>
                     </div>
                     <div>&nbsp;-</div>
                 </div>
@@ -61,7 +62,7 @@ const Detail = () => {
                 wishList();
             }
         })
-    }, [])
+    }, [auctionItemId])
 
     const getAuctionItem = async (auctionItemId) => {
         try {
@@ -72,6 +73,7 @@ const Detail = () => {
             setAuctionItem(res.data.auctionItem);
             setSellerNickname(res.data.sellerNickname);
             sessionStorage.setItem("wishList", res.data.auctionItem.inWishList);
+            console.log(sessionStorage.getItem("wishList"));
             sessionStorage.setItem("auctionItem", JSON.stringify(res.data.auctionItem));
 
         } catch (error) {
@@ -93,7 +95,8 @@ const Detail = () => {
         }
         try {
             const res = await axios.post(url, requestBody);
-
+            await sendNotification(auctionItem.sellerId, SOLD_OUT_NOTIFICATION_TITLE, SOLD_OUT_NOTIFICATION_BODY,
+                auctionItem.id, "BUY_REQUESTED", null);
         } catch (error) {
             closeBuyNowConfirmModal();
             setIsAlertModalOpen(true);
@@ -111,6 +114,8 @@ const Detail = () => {
         }
         try {
             await axios.post(url, requestBody);
+            await sendNotification(auctionItem.sellerId, NEW_OFFER_NOTIFICATION_TITLE, NEW_OFFER_NOTIFICATION_BODY,
+                auctionItem.id, "OFFER_REQUESTED", null);
             window.location.reload();
 
         } catch (error) {
@@ -121,8 +126,8 @@ const Detail = () => {
     }
 
     const wishList = async () => {
-        console.log(JSON.parse(sessionStorage.getItem("wishList")));
-        const url = `wishlist/${sessionStorage.getItem("wishList") ? 'add' : 'delete'}`;
+        const url = `wishlist/${sessionStorage.getItem("wishList") === "true" ? 'add' : 'delete'}`;
+
         const requestBody = {
             auctionItemId: JSON.parse(sessionStorage.getItem("auctionItem")).id
         }
@@ -139,6 +144,8 @@ const Detail = () => {
         const requestBody = { offerId: offerState.id }
         try {
             await axios.post(url, requestBody);
+            await sendNotification(offerState.memberId, OFFER_CONFIRMED_NOTIFICATION_TITLE, OFFER_CONFIRMED_NOTIFICATION_BODY,
+                auctionItemId, "OFFER_CONFIRMED", null);
         } catch (error) {
             console.log(error.message);
         }
@@ -176,6 +183,7 @@ const Detail = () => {
         updatedAuctionItem.inWishList = !auctionItem.inWishList;
         setAuctionItem(updatedAuctionItem);
         sessionStorage.setItem("wishList", updatedAuctionItem.inWishList);
+        console.log(updatedAuctionItem.inWishList);
     }
 
     const deliverItemPrices = (currencyTypes, values) => {
@@ -288,7 +296,6 @@ const Detail = () => {
                                 <div className={styles.offers_wrapper}>
                                     {auctionItem.offers !== null && auctionItem.offers.length !== 0 ? auctionItem?.offers.map((offer) => (
                                         <div className={styles.offer} key={offer.id}>
-                                            {console.log(offer)}
                                             <div className={styles.offer_time}>
                                                 ·&nbsp;&nbsp;{formatTimeDifference(offer.offeredAt)}
                                             </div>
@@ -337,10 +344,25 @@ const Detail = () => {
                                 {auctionItem.priceGoldIngot ? <div><div className={styles.price_image_box}><img src={currencyTypeList[2].src} alt="" /></div><div className={styles.item_price_wrapper}><span>{auctionItem.priceGoldIngot}</span>Ingot</div></div> : null}
                                 {auctionItem.priceEventCurrency ? <div><div className={styles.price_image_box}><img src={currencyTypeList[3].src} alt="" /></div><div className={styles.item_price_wrapper}><span>{auctionItem.priceEventCurrency}</span>Event</div></div> : null}
                             </div>
-                            <div className={styles.buy_btn} onClick={() => setIsBuyNowConfirmModalOpen(true)}>BUY NOW</div>
-                            {auctionItem.allowOffer ?
-                                <div className={styles.offer_btn} onClick={() => setIsOfferModalOpen(true)}> OFFER</div>
-                                : null}
+                            {auctionItem.auctionStatusType !== "COMPLETED" ?
+                                <>
+                                    {auctionItem.auctionStatusType !== "TRADING" ?
+                                        <>
+                                            <div className={styles.buy_btn} onClick={() => setIsBuyNowConfirmModalOpen(true)}>BUY NOW</div>
+                                            {auctionItem.allowOffer ?
+                                                <div className={styles.offer_btn} onClick={() => setIsOfferModalOpen(true)}> OFFER</div>
+                                                : null}
+                                        </>
+                                        : <div className={styles.chat_btn} onClick={() => movePage('/auction-chat')}>
+                                            Chat
+                                        </div>}
+                                </>
+                                : <div className={styles.completed}>
+                                    Completed
+                                </div>
+                            }
+
+
                         </div>
                     </div>
                     <AddPrice isOpen={isOfferModalOpen} onRequestClose={() => setIsOfferModalOpen(false)} deliverItemPrices={deliverItemPrices} />
