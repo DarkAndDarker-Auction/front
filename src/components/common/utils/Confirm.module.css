@@ -1,0 +1,60 @@
+.modal {
+    position: absolute;
+    top: 40%;
+    left: 40%;
+    width: 22%;
+    background-color: #2e2e2e;
+    border: none;
+    border-radius: 5px;
+}
+
+.confirm_header {
+    width: 100%;
+    height: 50px;
+    padding: 0 20px 0 20px;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 5px 5px 0 0;
+    align-items: center;
+    background-color: #29292b;
+    font-size: 18px;
+}
+
+.confirm_body {
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 30px 20px 30px;
+    text-align: center;
+}
+
+.btn_wrapper {
+    display: flex;
+    flex-direction: row;
+    height: 50px;
+    width: 100%;
+}
+
+.btn_wrapper>div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+    height: 100%;
+    cursor: pointer;
+}
+
+.btn_wrapper>div:hover {
+    filter: brightness(0.8);
+}
+
+.yes_btn {
+    background-color: #846d51;
+    border-radius: 0 0 5px 0;
+}
+
+.no_btn {
+    background-color: #524e47;
+    border-radius: 0 0 0 5px;
+}

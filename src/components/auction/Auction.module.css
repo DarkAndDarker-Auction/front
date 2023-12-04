@@ -1,8 +1,30 @@
-.auction_container {
-    margin: auto;
-    background-color: rgba(0, 0, 0, 0.700);
+.auction_wrapper {
     display: flex;
+    flex-direction: column;
+}
+
+.auction_tab {
+    margin-bottom: 50px;
+    border-bottom: none;
+    display: table;
     flex-direction: row;
-    width: 100%;
-    height: 100%;
+    border-collapse: collapse;
+}
+
+.auction_tab div {
+    display: table-cell;
+    text-align: center;
+    vertical-align: middle;
+    border: 2px solid #B89971;
+    color: #B89971;
+    opacity: 0.3;
+    width: 20%;
+    height: 80px;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.auction_tab>div:hover {
+    filter: brightness(1.5);
 }

@@ -1,55 +1,57 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import { useCookies } from 'react-cookie';
-
 import styles from './Signin.module.css';
 
-const signin = async (email, password) => {
+const Signin = ({ signinSuccess }) => {
 
-    try {
-        const res = await axios.post('http://localhost:8080/auth/signin', {
-            email: email,
-            password: password
-        }, {
-            withCredentials: false,
-        });
-        console.log(res.data);
-        return res;
+    const REFRESH_TOKEN_EXPIRATION_DAY = 7;
 
-    } catch (error) {
-        console.error(error.response);
-        return false;
-    }
-}
-
-
-const Signin = () => {
+    const movePage = useNavigate();
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [cookies, setCookie] = useCookies(["accessToken", "refreshToken"]);
-    const movePage = useNavigate();
+    const [authenticationFailed, setAuthenticationFailed] = useState(false);
+    const [, setCookie,] = useCookies(["accessToken", "refreshToken"]);
 
-    let res = false;
+    const signin = async (email, password) => {
+        try {
+            const { data } = await axios.post('http://localhost:8080/auth/signin', {
+                email: email,
+                password: password
+            });
 
-    const searchKeyRedux = useSelector((state) => state.searchKey);
-    console.log("searchKey : " + searchKeyRedux);
+            const refreshTokenExpires = new Date();
+            refreshTokenExpires.setDate(refreshTokenExpires.getDate() + REFRESH_TOKEN_EXPIRATION_DAY); // 7일
 
-    const handleSubmit = async (event) => {
+            setCookie("accessToken", data.accessToken, { path: "/", expires: refreshTokenExpires });
+            setCookie("refreshToken", data.refreshToken, { path: "/", expires: refreshTokenExpires });
+
+            return true;
+
+        } catch (error) {
+            console.error(error.response);
+            return false;
+        }
+    }
+
+    const handleSignin = async (event) => {
         event.preventDefault();
-        res = await signin(email, password);
+        const res = await signin(email, password);
 
-        const accessTokenExpires = new Date();
-        accessTokenExpires.setMinutes(accessTokenExpires.getMinutes() + 30); // 30분
-        const refreshTokenExpires = new Date();
-        refreshTokenExpires.setDate(refreshTokenExpires.getDate() + 7); // 7일
+        if (res) {
+            signinSuccess();
+            return;
+        }
 
-        setCookie("accessToken", res.data.accessToken, { path: "/", expires: accessTokenExpires });
-        setCookie("refreshToken", res.data.refreshToken, { path: "/", expires: refreshTokenExpires });
-
-        movePage("/auction");
+        setAuthenticationFailed(true);
+        const inputEmail = document.querySelector('.input_email');
+        const inputPassword = document.querySelector('.input_password');
+        inputEmail.style.borderBottom = "1px solid red";
+        inputPassword.style.borderBottom = "1px solid red";
+        inputPassword.value = "";
+        setPassword(null);
     }
 
     const onChangeEmail = (event) => {
@@ -66,27 +68,26 @@ const Signin = () => {
     }
 
     return (
-        <div className={styles.signin_container}>
-            <img src="https://www.darkndarker.fr/wp-content/uploads/2023/01/dark_and_darker_h1-1024x158.png" alt="" />
-            <form onSubmit={handleSubmit}>
-                <div className={styles.input_container}>
-                    <input type="text" value={email} onChange={onChangeEmail} placeholder='email' />
+        <div className={styles.signin_background_wrapper}>
+            <div className={styles.signin_container}>
+                <img src="https://www.darkndarker.fr/wp-content/uploads/2023/01/dark_and_darker_h1-1024x158.png" alt="" />
+                <div className={styles.input_wrapper}>
+                    <input type="text" className='input_email' value={email} onChange={onChangeEmail} placeholder='email' />
                 </div>
-                <div className={styles.input_container}>
-
-                    <input type="password" value={password} onChange={onChangePassword} placeholder='password' />
+                <div className={styles.input_wrapper}>
+                    <input type="password" className='input_password' value={password} onChange={onChangePassword} placeholder='password' />
+                    {authenticationFailed && <div className={`${styles.input_container} ${styles.input_validation_incorrect}`}>로그인에 실패하였습니다.</div>}
                 </div>
-                <div className={styles.input_container}>
-                    <button type="submit">SIGN IN</button>
+                <div className={styles.btn_wrapper}>
+                    <button type="submit" onClick={handleSignin}>SIGN IN</button>
                 </div>
                 <div className="line"></div>
                 <div className={styles.signup_notice}>
                     have no account?
-                    <a href="" className="signup" onClick={onClickSignup}> Sign Up </a>
+                    <div className={styles.signup} onClick={onClickSignup}> &nbsp;Sign Up </div>
                 </div>
-            </form>
+            </div>
         </div>
-
     );
 }
 

@@ -5,7 +5,8 @@
   "dependencies": {
     "@emotion/react": "^11.11.1",
     "@emotion/styled": "^11.11.0",
-    "@mui/material": "^5.14.14",
+    "@mui/icons-material": "^5.14.15",
+    "@mui/material": "^5.14.15",
     "@reduxjs/toolkit": "^1.9.5",
     "@stomp/stompjs": "^7.0.0",
     "@testing-library/jest-dom": "^5.16.5",
@@ -13,21 +14,29 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.3.6",
     "bootstrap": "^5.3.0",
+    "firebase": "^10.6.0",
+    "http-proxy-middleware": "^2.0.6",
+    "jwt-decode": "^4.0.0",
+    "net": "^1.0.2",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.4",
     "react-cookie": "^6.1.1",
     "react-dom": "^18.2.0",
+    "react-hot-toast": "^2.4.1",
+    "react-modal": "^3.16.1",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.11.1",
     "react-scripts": "^5.0.1",
     "redux": "^4.2.1",
+    "sockjs-client": "^1.6.1",
     "stompjs": "^2.3.3",
     "tom-select": "^2.2.3",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "HTTPS=true SSL_CRT_FILE=./.cert/cert.pem SSL_KEY_FILE=./.cert/key.pem react-scripts start",
     "build": "react-scripts build",
+    "dev": "react-scripts start",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
@@ -52,6 +61,7 @@
   "devDependencies": {
     "@babel/plugin-proposal-numeric-separator": "^7.18.6",
     "@jridgewell/sourcemap-codec": "^1.4.15",
+    "@types/react-modal": "^3.16.2",
     "stable": "^0.1.8"
   }
 }

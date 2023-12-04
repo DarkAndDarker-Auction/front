@@ -1,7 +1,19 @@
 @font-face {
     font-family: 'Cormorant Garamond', serif;
     src: url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+}
 
+.signin_background_wrapper {
+    width: 99vi;
+    height: 93vh;
+    background-image: url("https://i.blogs.es/e1af2c/dark-and-darker-bitorrent/1366_2000.webp");
+    background-size: cover;
+    position: absolute;
+    top: -100px;
+    left: 0px;
+    z-index: 999;
+    display: flex;
+    align-items: center;
 }
 
 .signin_container {
@@ -13,12 +25,8 @@
     height: 500px;
     margin: auto;
     padding-bottom: 50px;
-    background-color: rgba(0, 0, 0, 0.700);
+    background-color: rgba(0, 0, 0, 0.8);
     border: 4px double #808080;
-}
-
-.signin_container form {
-    width: 100%;
 }
 
 .signin_container img {
@@ -38,7 +46,12 @@
     font-family: 'Cormorant Garamond', serif;
 }
 
-.input_container {
+.signin_container button:hover {
+    filter: brightness(0.8);
+}
+
+.input_wrapper {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     margin-top: 1.5rem;
@@ -46,7 +59,15 @@
     align-content: center;
 }
 
-.input_container input {
+.btn_wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 1.5rem;
+    width: 100%;
+    align-content: center;
+}
+
+.input_wrapper input {
     margin: auto;
     width: 70%;
     padding: 12px 20px;
@@ -79,9 +100,29 @@
     text-align: center;
 }
 
+.signup {
+    display: inline-block;
+    color: blue;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.signup:hover {
+    filter: brightness(1.2);
+}
+
 .line {
     border-bottom: 1px solid #808080;
     width: 70%;
     margin: auto;
     margin-top: 40px;
+}
+
+.input_validation_incorrect {
+    position: absolute;
+    width: auto;
+    bottom: -22px;
+    font-size: 12px;
+    left: 60px;
+    color: red;
 }

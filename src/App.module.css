@@ -1,0 +1,121 @@
+@font-face {
+    font-family: 'Cormorant Garamond', serif;
+    src: url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap');
+}
+
+@font-face {
+    font-family: 'Roboto', sans-serif;
+    src: url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+}
+
+body {
+    overflow-y: scroll;
+}
+
+.background_wrapper {
+    width: 100%;
+    min-height: 100vh;
+    font-family: 'Roboto', sans-serif;
+    background-size: cover;
+    color: white;
+    background-color: #1F2129;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    width: 100%;
+    height: 7vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    border-bottom: 1px solid gray;
+    padding: 0 30px 0 30px;
+}
+
+.body {
+    margin-top: 100px;
+    width: 100%;
+    display: flex;
+    position: relative;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.body__contents {
+    width: 100%;
+    max-width: 1080px;
+}
+
+.floating_menu {
+    position: sticky;
+    height: fit-content;
+    padding: 20px 0 0 20px;
+    color: #B89971;
+    top: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.floating_menu>button {
+    margin-bottom: 10px;
+}
+
+.floating_menu>button:hover {
+    filter: brightness(1.2);
+}
+
+.noti_menu {
+    background-color: #aa6505 !important;
+    position: relative;
+}
+
+.chat_menu {
+    background-color: #dfd2c0 !important;
+    position: relative;
+}
+
+.notify_new {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-color: red;
+    border-radius: 50%;
+    min-width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+}
+
+.user_feature_wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
+.logo {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 32px;
+    cursor: pointer;
+}
+
+.logo>img {
+    height: 50px;
+    padding: 10px 0 10px 0;
+}
+
+.user_feature {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 130px;
+    font-size: 20px;
+    cursor: pointer;
+}

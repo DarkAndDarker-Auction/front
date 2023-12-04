@@ -1,0 +1,114 @@
+.auction_chat_container {
+    border: 1px solid #F6F6F6;
+    height: 90vh;
+    margin-bottom: 5vh;
+    display: flex;
+    flex-direction: row;
+}
+
+.auction_chat_container>div {
+    width: 50%;
+    height: 100%;
+}
+
+.chat_room_header {
+    height: 20%;
+    background-color: #1B1D22;
+    border-bottom: 1px solid #F6F6F6;
+    font-size: 28px;
+    font-weight: bold;
+    padding-left: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.chat_room_list {
+    width: 100%;
+    height: 80%;
+    overflow-y: scroll;
+}
+
+.chat_room_wrapper {
+    height: 120px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 10px 0 30px;
+    cursor: pointer;
+    position: relative;
+}
+
+.chat_room_wrapper:hover {
+    background-color: #F6F6F6;
+}
+
+.chat_room_wrapper:hover .chat_room__arrow_icon {
+    display: inline-block;
+}
+
+.chat_room__arrow_icon {
+    position: absolute;
+    right: 10px;
+}
+
+.chat_room_info {
+    display: flex;
+    flex-direction: column;
+}
+
+.item {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.trade_type {
+    padding: 3px 5px 1px 5px;
+    margin-left: 15px;
+    border: 1px solid #B89971;
+    font-size: 16px;
+}
+
+.nickname {
+    font-size: 14px;
+}
+
+.brief_content {
+    width: 100%;
+    font-size: 14px;
+    display: flex;
+    flex-direction: row;
+}
+
+.brief_content>span {
+    font-size: 12px;
+}
+
+.brief_content__message {
+    max-width: 80%;
+    display: block;
+    height: 1rem;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chat_room_completed {
+    margin-right: 40px;
+}
+
+.auction_chat__chat {
+    width: 100%;
+}
+
+.no_selected_chat_room {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+}

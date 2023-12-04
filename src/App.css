@@ -1,7 +1,4 @@
-.background-wrapper {
-    background: url(https://oyster.ignimgs.com/mediawiki/apis.ign.com/dark-and-darker/8/8a/Dark-darker-beginners.jpg?width=1920);
-    background-size: 100% 100%;
-    background-repeat: repeat-y;
-    height: 100vh;
-    padding-top: 60px;
+:root {
+    --primary-color: #f05014;
+    --background-color: #000;
 }

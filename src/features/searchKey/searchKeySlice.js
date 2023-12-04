@@ -2,7 +2,11 @@ import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
     loaded: false,
-    searchKey: [],
+    searchKey: {
+        items: [],
+        rarities: [],
+        itemOptions: []
+    },
 }
 
 const searchKeySlice = createSlice({
